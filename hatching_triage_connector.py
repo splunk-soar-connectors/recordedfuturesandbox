@@ -4,6 +4,7 @@
 import phantom.app as phantom
 import phantom.rules as prules
 from phantom.app import ActionResult, BaseConnector
+
 from hatching_triage_api import TriageAPI, TriageException
 
 
