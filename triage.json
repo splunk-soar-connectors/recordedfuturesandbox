@@ -3,7 +3,7 @@
     "name": "Recorded Future Sandbox",
     "description": "App for Recorded Future Sandbox submissions",
     "type": "sandbox",
-    "package_name": "phantom_recordedfuturesandbox",
+    "package_name": "phantom_triage",
     "main_module": "hatching_triage_connector.py",
     "app_version": "0.5.2",
     "product_name": "Recorded Future Sandbox",
