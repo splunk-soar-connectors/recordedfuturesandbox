@@ -1,1 +1,7 @@
 **Unreleased**
+* Initial release with the following actions
+    * detonate file
+    * detonate url
+    * fetch report
+    * get status
+    * test connectivity
