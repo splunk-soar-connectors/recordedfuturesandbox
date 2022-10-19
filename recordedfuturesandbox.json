@@ -78,7 +78,6 @@
                 "profile_id": {
                     "description": "The profile to use (standard if left empty)",
                     "data_type": "string",
-                    "required": false,
                     "order": 2
                 }
             },
@@ -86,7 +85,8 @@
                 {
                     "data_path": "action_result.status",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ],
                     "data_type": "string"
                 },
@@ -166,7 +166,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                        "string"
+                        "analysis id"
                     ],
                     "order": 0
                 }
@@ -179,7 +179,8 @@
                 {
                     "data_path": "action_result.status",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ],
                     "data_type": "string"
                 },
@@ -187,7 +188,7 @@
                     "data_path": "action_result.parameter.analysis_id",
                     "data_type": "string",
                     "contains": [
-                        "string"
+                        "analysis id"
                     ]
                 },
                 {
@@ -1406,14 +1407,12 @@
                     "description": "The kind of URL analysis to run, you can choose between 'url' and 'fetch'. Url launches the url in the sandbox. Fetch lets Recorded Future Sandbox download what's located at the URL and submit it as a file",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
                     "default": "url",
                     "order": 1
                 },
                 "profile_id": {
                     "description": "The profile to use (standard if left empty)",
                     "data_type": "string",
-                    "required": false,
                     "order": 2
                 }
             },
@@ -1421,7 +1420,8 @@
                 {
                     "data_path": "action_result.status",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ],
                     "data_type": "string"
                 },
@@ -1497,7 +1497,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                        "string"
+                        "analysis id"
                     ],
                     "order": 0
                 }
@@ -1506,7 +1506,8 @@
                 {
                     "data_path": "action_result.status",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ],
                     "data_type": "string"
                 },
@@ -1514,7 +1515,7 @@
                     "data_path": "action_result.parameter.analysis_id",
                     "data_type": "string",
                     "contains": [
-                        "string"
+                        "analysis id"
                     ]
                 },
                 {
