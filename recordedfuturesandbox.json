@@ -84,6 +84,29 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ],
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.target",
                     "data_type": "string",
                     "example_values": [
@@ -125,6 +148,29 @@
                 "view": "recordedfuturesandbox_view.do_view"
             },
             "output": [
+                {
+                    "data_path": "action_result.status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ],
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
                 {
                     "data_path": "action_result.data.*.report.summary.sample",
                     "data_type": "string",
@@ -205,7 +251,7 @@
                 {
                     "data_path": "action_result.data.*.report.summary.tasks.behavioral1.*.tags",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "persistence",
                             "evasion",
@@ -215,7 +261,6 @@
                             "spyware",
                             "family:nanocore"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.summary.tasks.behavioral1.score",
@@ -276,7 +321,7 @@
                 {
                     "data_path": "action_result.data.*.report.summary.tasks.behavioral2.*.tags",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "evasion",
                             "trojan",
@@ -286,7 +331,6 @@
                             "family:nanocore",
                             "persistence"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.summary.tasks.behavioral2.score",
@@ -502,7 +546,7 @@
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.tags",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "persistence",
                             "evasion",
@@ -512,19 +556,17 @@
                             "spyware",
                             "family:nanocore"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.ttp",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "T1060",
                             "T1112",
                             "T1053",
                             "T1082"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.features",
@@ -990,7 +1032,7 @@
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.tags",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "evasion",
                             "trojan",
@@ -1000,28 +1042,25 @@
                             "family:nanocore",
                             "persistence"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.ttp",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "T1053",
                             "T1082",
                             "T1060",
                             "T1112"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.features",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "analog"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.submitted",
@@ -1244,11 +1283,10 @@
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.*.protocols",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "dns"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.domain",
@@ -1274,11 +1312,10 @@
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.domains",
                     "data_type": "string",
-                    "example_values": [
+                    "example_values": 
                         [
                             "jhonjhon4842.ddns.net"
                         ]
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.name",
@@ -1366,6 +1403,29 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ],
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.target",
                     "data_type": "string",
                     "example_values": [
@@ -1403,6 +1463,29 @@
               }
           },
           "output": [
+              {
+                  "data_path": "action_result.status",
+                  "example_values": [
+                      "success",
+                      "failed"
+                  ],
+                  "data_type": "string"
+              },
+              {
+                  "data_path": "action_result.summary",
+                  "data_type": "string"
+              },
+              {
+                  "data_path": "action_result.message",
+                  "data_type": "string"
+              },
+              {
+                  "data_path": "summary.total_objects",
+                  "data_type": "numeric",
+                  "example_values": [
+                      1
+                  ]
+              },
               {
                   "data_path": "action_result.data.*.analysis_id",
                   "data_type": "string",
