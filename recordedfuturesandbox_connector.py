@@ -175,6 +175,7 @@ class TriageConnector(BaseConnector):
 
     def _handle_test_connectivity(self, p):
         action_result = self.add_action_result(ActionResult(dict(p)))
+        self.save_progress("Checking if Recorded Future Sandbox is up")
         if self._api.is_available():
             self.save_progress("Recorded Future Sandbox is up")
             action_result.set_status(phantom.APP_SUCCESS)
