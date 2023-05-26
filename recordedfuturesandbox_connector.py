@@ -127,7 +127,7 @@ class TriageConnector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _poll_analysis(self, param):
+    def _handle_fetch_report(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         self.save_progress("Checking if Recorded Future Sandbox is up")
@@ -227,7 +227,7 @@ class TriageConnector(BaseConnector):
             "test_connectivity": self._handle_test_connectivity,
             "detonate_file": self._handle_detonate_file,
             "detonate_url": self._handle_detonate_url,
-            "fetch_report": self._poll_analysis,
+            "fetch_report": self._handle_fetch_report,
             "get_status": self._get_status,
         }
 
