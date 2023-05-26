@@ -23,8 +23,7 @@ import phantom.app as phantom
 import phantom.rules as prules
 from phantom.app import ActionResult, BaseConnector
 
-from recordedfuturesandbox_api import TriageException
-from recordedfuturesandbox_api import TriageAPI
+from recordedfuturesandbox_api import TriageAPI, TriageException
 
 
 class TriageConnector(BaseConnector):
