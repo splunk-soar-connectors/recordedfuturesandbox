@@ -92,6 +92,41 @@
                     "data_type": "string"
                 },
                 {
+                    "data_path": "action_result.parameter.file_name",
+                    "data_type": "string",
+                    "contains": [
+                        "file name"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.profile_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.vault_id",
+                    "data_type": "string",
+                    "contains": [
+                        "vault id",
+                        "sha1"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.analysis_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "200729-zpddstnc42"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.target",
+                    "data_type": "string",
+                    "example_values": [
+                        "fbaf785edfafa583ea61884d88f507a27154892a394e27d81102f79fe7eb5b8f",
+                        "https://example.com",
+                        "sample.exe"
+                    ]
+                },
+                {
                     "data_path": "action_result.summary",
                     "data_type": "string"
                 },
@@ -112,22 +147,6 @@
                     "example_values": [
                         1
                     ]
-                },
-                {
-                    "data_path": "action_result.data.*.target",
-                    "data_type": "string",
-                    "example_values": [
-                        "fbaf785edfafa583ea61884d88f507a27154892a394e27d81102f79fe7eb5b8f",
-                        "https://example.com",
-                        "sample.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.analysis_id",
-                    "data_type": "string",
-                    "example_values": [
-                        "200729-zpddstnc42"
-                    ]
                 }
             ],
             "render": {
@@ -143,12 +162,12 @@
             "read_only": true,
             "parameters": {
                 "analysis_id": {
-                    "description": "ID given by Recorded Future Sandbox for the analysis to query.",
+                    "description": "ID given by Recorded Future Sandbox for the analysis to query",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
                     "contains": [
-                        "string"
+                        "analysis id"
                     ],
                     "order": 0
                 }
@@ -167,32 +186,24 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.summary",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
+                    "data_path": "action_result.parameter.analysis_id",
+                    "data_type": "string",
+                    "contains": [
+                        "analysis id"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.sample",
+                    "data_path": "action_result.data.*.report.summary.completed",
                     "data_type": "string",
                     "example_values": [
-                        "200729-zpddstnc42"
+                        "2020-07-29T20:23:25Z"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.status",
+                    "data_path": "action_result.data.*.report.summary.created",
                     "data_type": "string",
                     "example_values": [
-                        "reported"
+                        "2020-07-29T20:20:41Z"
                     ]
                 },
                 {
@@ -210,24 +221,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.target",
+                    "data_path": "action_result.data.*.report.summary.sample",
                     "data_type": "string",
                     "example_values": [
-                        "2020-01-22-02-47_V9m4ALCf.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.created",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-07-29T20:20:41Z"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.completed",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-07-29T20:23:25Z"
+                        "200729-zpddstnc42"
                     ]
                 },
                 {
@@ -245,45 +242,30 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.kind",
-                    "data_type": "string",
-                    "example_values": [
-                        "behavioral"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.status",
+                    "data_path": "action_result.data.*.report.summary.status",
                     "data_type": "string",
                     "example_values": [
                         "reported"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.*.tags",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "persistence",
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.score",
-                    "data_type": "numeric",
-                    "example_values": [
-                        10
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.target",
+                    "data_path": "action_result.data.*.report.summary.target",
                     "data_type": "string",
                     "example_values": [
                         "2020-01-22-02-47_V9m4ALCf.exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.*.tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "persistence",
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore"
                     ]
                 },
                 {
@@ -294,10 +276,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.resource",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.kind",
                     "data_type": "string",
                     "example_values": [
-                        "win7"
+                        "behavioral"
                     ]
                 },
                 {
@@ -315,45 +297,44 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.kind",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.resource",
                     "data_type": "string",
                     "example_values": [
-                        "behavioral"
+                        "win7"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.status",
-                    "data_type": "string",
-                    "example_values": [
-                        "reported"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.*.tags",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore",
-                            "persistence"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.score",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.score",
                     "data_type": "numeric",
                     "example_values": [
                         10
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.target",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "reported"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral1.target",
                     "data_type": "string",
                     "example_values": [
                         "2020-01-22-02-47_V9m4ALCf.exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.*.tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore",
+                        "persistence"
                     ]
                 },
                 {
@@ -364,10 +345,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.resource",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.kind",
                     "data_type": "string",
                     "example_values": [
-                        "win10v200722"
+                        "behavioral"
                     ]
                 },
                 {
@@ -385,26 +366,45 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.static1.kind",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.resource",
                     "data_type": "string",
                     "example_values": [
-                        "static"
+                        "win10v200722"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.summary.tasks.static1.status",
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.score",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.status",
                     "data_type": "string",
                     "example_values": [
                         "reported"
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.report.summary.tasks.behavioral2.target",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-01-22-02-47_V9m4ALCf.exe"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.report.summary.tasks.static1.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "family:nanocore"
-                        ]
+                        "family:nanocore"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.summary.tasks.static1.kind",
+                    "data_type": "string",
+                    "example_values": [
+                        "static"
                     ]
                 },
                 {
@@ -415,289 +415,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.version",
+                    "data_path": "action_result.data.*.report.summary.tasks.static1.status",
                     "data_type": "string",
                     "example_values": [
-                        "0.2.1"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.id",
-                    "data_type": "string",
-                    "example_values": [
-                        "200729-zpddstnc42"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.score",
-                    "data_type": "numeric",
-                    "example_values": [
-                        10
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.submitted",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-07-29T20:20:41Z"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.target",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-01-22-02-47_V9m4ALCf.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.size",
-                    "data_type": "numeric",
-                    "example_values": [
-                        207872
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.md5",
-                    "data_type": "string",
-                    "example_values": [
-                        "ca4570eb9ea8dad4939a10b9b44bbfc9"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.sha1",
-                    "data_type": "string",
-                    "example_values": [
-                        "8df59eb7a108ae2207be3b25645baffb9163f38a"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.sha256",
-                    "data_type": "string",
-                    "example_values": [
-                        "d44670b7dede4487ecc7d4a61f28a0462591fac8d303aa36b8b376001c79111d"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.sha512",
-                    "data_type": "string",
-                    "example_values": [
-                        "9c1784c3e7a37b61f2b2c729a6241a8b9edd60770ac6fbcb19840e68fbe6e33123c3d6b36b676dc4ccba24715dd4e09e06bb652a6319622162abe1dd3c10b0d0"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.*.static_tags",
-                    "data_type": "string",
-                    "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.target",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-01-22-02-47_V9m4ALCf.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.size",
-                    "data_type": "numeric",
-                    "example_values": [
-                        207872
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.md5",
-                    "data_type": "string",
-                    "example_values": [
-                        "ca4570eb9ea8dad4939a10b9b44bbfc9"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.sha1",
-                    "data_type": "string",
-                    "example_values": [
-                        "8df59eb7a108ae2207be3b25645baffb9163f38a"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.sha256",
-                    "data_type": "string",
-                    "example_values": [
-                        "d44670b7dede4487ecc7d4a61f28a0462591fac8d303aa36b8b376001c79111d"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.sha512",
-                    "data_type": "string",
-                    "example_values": [
-                        "9c1784c3e7a37b61f2b2c729a6241a8b9edd60770ac6fbcb19840e68fbe6e33123c3d6b36b676dc4ccba24715dd4e09e06bb652a6319622162abe1dd3c10b0d0"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.*.static_tags",
-                    "data_type": "string",
-                    "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.score",
-                    "data_type": "numeric",
-                    "example_values": [
-                        10
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.tags",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "persistence",
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.ttp",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "T1060",
-                            "T1112",
-                            "T1053",
-                            "T1082"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.features",
-                    "data_type": "string",
-                    "example_values": [
-                        [
-                            "analog"
-                        ]
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.submitted",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-07-29T20:20:41Z"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.reported",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-07-29T20:23:25Z"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.max_time_network",
-                    "data_type": "numeric",
-                    "example_values": [
-                        154947
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.max_time_kernel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        147796
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.backend",
-                    "data_type": "string",
-                    "example_values": [
-                        "fu1m1"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.resource",
-                    "data_type": "string",
-                    "example_values": [
-                        "win7"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.platform",
-                    "data_type": "string",
-                    "example_values": [
-                        "windows7_x64"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.procid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        23
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.procid_parent",
-                    "data_type": "numeric",
-                    "example_values": [
-                        20
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.pid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1152
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.ppid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1224
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.cmd",
-                    "data_type": "string",
-                    "example_values": [
-                        "\"C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe\""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.image",
-                    "data_type": "string",
-                    "example_values": [
-                        "C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.orig",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.started",
-                    "data_type": "numeric",
-                    "example_values": [
-                        999
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "Suspicious use of WriteProcessMemory"
+                        "reported"
                     ]
                 },
                 {
@@ -729,126 +450,202 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.id",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.at",
                     "data_type": "numeric",
                     "example_values": [
-                        2
+                        2340
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.src",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.cmd",
                     "data_type": "string",
                     "example_values": [
-                        "10.7.0.36:55328"
+                        "\"C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe\""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.dst",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.image",
                     "data_type": "string",
                     "example_values": [
-                        "8.8.8.8:53"
+                        "C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.proto",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.kind",
                     "data_type": "string",
                     "example_values": [
-                        "udp"
+                        "3"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.pid",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Suspicious use of WriteProcessMemory"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "memory/1660-0-0x0000000000000000-mapping.dmp"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.orig",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.pid",
                     "data_type": "numeric",
                     "example_values": [
                         1152
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.procid",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.pid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1660
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.ppid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1224
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.procid",
                     "data_type": "numeric",
                     "example_values": [
                         23
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.first_seen",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.procid",
                     "data_type": "numeric",
                     "example_values": [
-                        10167
+                        24
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.last_seen",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.procid_parent",
                     "data_type": "numeric",
                     "example_values": [
-                        10178
+                        20
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.rx_bytes",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.started",
                     "data_type": "numeric",
                     "example_values": [
-                        127
+                        999
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.rx_packets",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.features",
+                    "data_type": "string",
                     "example_values": [
-                        1
+                        "analog"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.tx_bytes",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.tags",
+                    "data_type": "string",
                     "example_values": [
-                        67
+                        "persistence",
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.tx_packets",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.ttp",
+                    "data_type": "string",
+                    "example_values": [
+                        "T1060",
+                        "T1112",
+                        "T1053",
+                        "T1082"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.backend",
+                    "data_type": "string",
+                    "example_values": [
+                        "fu1m1"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.max_time_kernel",
                     "data_type": "numeric",
                     "example_values": [
-                        1
+                        147796
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.max_time_network",
+                    "data_type": "numeric",
+                    "example_values": [
+                        154947
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.platform",
+                    "data_type": "string",
+                    "example_values": [
+                        "windows7_x64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.reported",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-07-29T20:23:25Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.resource",
+                    "data_type": "string",
+                    "example_values": [
+                        "win7"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.score",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.submitted",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-07-29T20:20:41Z"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.*.protocols",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "dns"
-                        ]
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.domain",
-                    "data_type": "string",
-                    "example_values": [
-                        "jhonjhon4842.ddns.net"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.flow",
-                    "data_type": "numeric",
-                    "example_values": [
-                        2
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.index",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
+                        "dns"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.dns_request.*.domains",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "jhonjhon4842.ddns.net"
-                        ]
+                        "jhonjhon4842.ddns.net"
                     ]
                 },
                 {
@@ -866,45 +663,583 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.at",
-                    "data_type": "numeric",
-                    "example_values": [
-                        2340
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.pid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1660
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.procid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        24
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.name",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.domain",
                     "data_type": "string",
                     "example_values": [
-                        "memory/1660-0-0x0000000000000000-mapping.dmp"
+                        "jhonjhon4842.ddns.net"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral1.*.kind",
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.dst",
+                    "data_type": "string",
+                    "example_values": [
+                        "8.8.8.8:53"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.first_seen",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10167
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.flow",
+                    "data_type": "numeric",
+                    "example_values": [
+                        2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.id",
+                    "data_type": "numeric",
+                    "example_values": [
+                        2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.index",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.last_seen",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10178
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.pid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1152
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.procid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        23
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.proto",
+                    "data_type": "string",
+                    "example_values": [
+                        "udp"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.rx_bytes",
+                    "data_type": "numeric",
+                    "example_values": [
+                        127
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.rx_packets",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.src",
+                    "data_type": "string",
+                    "example_values": [
+                        "10.7.0.36:55328"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.tx_bytes",
+                    "data_type": "numeric",
+                    "example_values": [
+                        67
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.tx_packets",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.*.static_tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "windows",
+                        "x86"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.id",
+                    "data_type": "string",
+                    "example_values": [
+                        "200729-zpddstnc42"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.md5",
+                    "data_type": "string",
+                    "example_values": [
+                        "ca4570eb9ea8dad4939a10b9b44bbfc9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.score",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.sha1",
+                    "data_type": "string",
+                    "example_values": [
+                        "8df59eb7a108ae2207be3b25645baffb9163f38a"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.sha256",
+                    "data_type": "string",
+                    "example_values": [
+                        "d44670b7dede4487ecc7d4a61f28a0462591fac8d303aa36b8b376001c79111d"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.sha512",
+                    "data_type": "string",
+                    "example_values": [
+                        "9c1784c3e7a37b61f2b2c729a6241a8b9edd60770ac6fbcb19840e68fbe6e33123c3d6b36b676dc4ccba24715dd4e09e06bb652a6319622162abe1dd3c10b0d0"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.size",
+                    "data_type": "numeric",
+                    "example_values": [
+                        207872
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.submitted",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-07-29T20:20:41Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.sample.target",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-01-22-02-47_V9m4ALCf.exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.*.static_tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "windows",
+                        "x86"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.md5",
+                    "data_type": "string",
+                    "example_values": [
+                        "ca4570eb9ea8dad4939a10b9b44bbfc9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.sha1",
+                    "data_type": "string",
+                    "example_values": [
+                        "8df59eb7a108ae2207be3b25645baffb9163f38a"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.sha256",
+                    "data_type": "string",
+                    "example_values": [
+                        "d44670b7dede4487ecc7d4a61f28a0462591fac8d303aa36b8b376001c79111d"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.sha512",
+                    "data_type": "string",
+                    "example_values": [
+                        "9c1784c3e7a37b61f2b2c729a6241a8b9edd60770ac6fbcb19840e68fbe6e33123c3d6b36b676dc4ccba24715dd4e09e06bb652a6319622162abe1dd3c10b0d0"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.size",
+                    "data_type": "numeric",
+                    "example_values": [
+                        207872
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.task.target",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-01-22-02-47_V9m4ALCf.exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral1.version",
+                    "data_type": "string",
+                    "example_values": [
+                        "0.2.1"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.*.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "Token: SeDebugPrivilege"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.*.pid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3288
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.*.procid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        65
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.at",
+                    "data_type": "numeric",
+                    "example_values": [
+                        4031
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.cmd",
+                    "data_type": "string",
+                    "example_values": [
+                        "\"C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe\""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.image",
+                    "data_type": "string",
+                    "example_values": [
+                        "C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.kind",
                     "data_type": "string",
                     "example_values": [
                         "3"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.version",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.name",
                     "data_type": "string",
                     "example_values": [
-                        "0.2.1"
+                        "Suspicious use of AdjustPrivilegeToken"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "memory/4012-0-0x0000000000000000-mapping.dmp"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.orig",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.pid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3288
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.pid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        4012
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.ppid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3036
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.procid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        65
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.procid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        66
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.procid_parent",
+                    "data_type": "numeric",
+                    "example_values": [
+                        56
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.started",
+                    "data_type": "numeric",
+                    "example_values": [
+                        297
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.features",
+                    "data_type": "string",
+                    "example_values": [
+                        "analog"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore",
+                        "persistence"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.ttp",
+                    "data_type": "string",
+                    "example_values": [
+                        "T1053",
+                        "T1082",
+                        "T1060",
+                        "T1112"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.backend",
+                    "data_type": "string",
+                    "example_values": [
+                        "horse2"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.max_time_kernel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        150187
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.max_time_network",
+                    "data_type": "numeric",
+                    "example_values": [
+                        147946
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.platform",
+                    "data_type": "string",
+                    "example_values": [
+                        "windows10_x64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.reported",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-07-29T20:23:20Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.resource",
+                    "data_type": "string",
+                    "example_values": [
+                        "win10v200722"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.score",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.submitted",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-07-29T20:20:41Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.*.protocols",
+                    "data_type": "string",
+                    "example_values": [
+                        "dns"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.domains",
+                    "data_type": "string",
+                    "example_values": [
+                        "jhonjhon4842.ddns.net"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "jhonjhon4842.ddns.net"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "IN A"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.domain",
+                    "data_type": "string",
+                    "example_values": [
+                        "jhonjhon4842.ddns.net"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dst",
+                    "data_type": "string",
+                    "example_values": [
+                        "8.8.8.8:53"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.first_seen",
+                    "data_type": "numeric",
+                    "example_values": [
+                        6905
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.flow",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.id",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.index",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.last_seen",
+                    "data_type": "numeric",
+                    "example_values": [
+                        6916
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.pid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3288
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.procid",
+                    "data_type": "numeric",
+                    "example_values": [
+                        65
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.proto",
+                    "data_type": "string",
+                    "example_values": [
+                        "udp"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.rx_bytes",
+                    "data_type": "numeric",
+                    "example_values": [
+                        127
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.rx_packets",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.src",
+                    "data_type": "string",
+                    "example_values": [
+                        "10.10.0.57:58276"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.tx_bytes",
+                    "data_type": "numeric",
+                    "example_values": [
+                        67
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.tx_packets",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.*.static_tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "windows",
+                        "x86"
                     ]
                 },
                 {
@@ -915,38 +1250,17 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.score",
-                    "data_type": "numeric",
-                    "example_values": [
-                        10
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.submitted",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-07-29T20:20:41Z"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.target",
-                    "data_type": "string",
-                    "example_values": [
-                        "2020-01-22-02-47_V9m4ALCf.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.size",
-                    "data_type": "numeric",
-                    "example_values": [
-                        207872
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.sample.md5",
                     "data_type": "string",
                     "example_values": [
                         "ca4570eb9ea8dad4939a10b9b44bbfc9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.score",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10
                     ]
                 },
                 {
@@ -971,27 +1285,32 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.*.static_tags",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.size",
+                    "data_type": "numeric",
                     "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
+                        207872
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.task.target",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.submitted",
+                    "data_type": "string",
+                    "example_values": [
+                        "2020-07-29T20:20:41Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.sample.target",
                     "data_type": "string",
                     "example_values": [
                         "2020-01-22-02-47_V9m4ALCf.exe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.task.size",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.task.*.static_tags",
+                    "data_type": "string",
                     "example_values": [
-                        207872
+                        "windows",
+                        "x86"
                     ]
                 },
                 {
@@ -1023,357 +1342,39 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.task.*.static_tags",
-                    "data_type": "string",
-                    "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.score",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.task.size",
                     "data_type": "numeric",
                     "example_values": [
-                        10
+                        207872
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.tags",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore",
-                            "persistence"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.ttp",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "T1053",
-                            "T1082",
-                            "T1060",
-                            "T1112"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.features",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "analog"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.submitted",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.task.target",
                     "data_type": "string",
                     "example_values": [
-                        "2020-07-29T20:20:41Z"
+                        "2020-01-22-02-47_V9m4ALCf.exe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.reported",
+                    "data_path": "action_result.data.*.report.tasks.behavioral2.version",
                     "data_type": "string",
                     "example_values": [
-                        "2020-07-29T20:23:20Z"
+                        "0.2.1"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.max_time_network",
-                    "data_type": "numeric",
-                    "example_values": [
-                        147946
-                    ]
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.max_time_kernel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        150187
-                    ]
+                    "data_path": "action_result.message",
+                    "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.backend",
-                    "data_type": "string",
-                    "example_values": [
-                        "horse2"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.resource",
-                    "data_type": "string",
-                    "example_values": [
-                        "win10v200722"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.platform",
-                    "data_type": "string",
-                    "example_values": [
-                        "windows10_x64"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.procid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        65
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.procid_parent",
-                    "data_type": "numeric",
-                    "example_values": [
-                        56
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.pid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3288
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.ppid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3036
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.cmd",
-                    "data_type": "string",
-                    "example_values": [
-                        "\"C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe\""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.image",
-                    "data_type": "string",
-                    "example_values": [
-                        "C:\\Users\\Admin\\AppData\\Local\\Temp\\2020-01-22-02-47_V9m4ALCf.exe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.orig",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.started",
-                    "data_type": "numeric",
-                    "example_values": [
-                        297
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "Suspicious use of AdjustPrivilegeToken"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.*.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "Token: SeDebugPrivilege"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.*.pid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3288
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.*.procid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        65
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.id",
+                    "data_path": "summary.total_objects",
                     "data_type": "numeric",
                     "example_values": [
                         1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.src",
-                    "data_type": "string",
-                    "example_values": [
-                        "10.10.0.57:58276"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dst",
-                    "data_type": "string",
-                    "example_values": [
-                        "8.8.8.8:53"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.proto",
-                    "data_type": "string",
-                    "example_values": [
-                        "udp"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.pid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3288
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.procid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        65
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.first_seen",
-                    "data_type": "numeric",
-                    "example_values": [
-                        6905
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.last_seen",
-                    "data_type": "numeric",
-                    "example_values": [
-                        6916
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.rx_bytes",
-                    "data_type": "numeric",
-                    "example_values": [
-                        127
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.rx_packets",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.tx_bytes",
-                    "data_type": "numeric",
-                    "example_values": [
-                        67
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.tx_packets",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.*.protocols",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "dns"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.domain",
-                    "data_type": "string",
-                    "example_values": [
-                        "jhonjhon4842.ddns.net"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.flow",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.index",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.domains",
-                    "data_type": "string",
-                    "example_values": 
-                        [
-                            "jhonjhon4842.ddns.net"
-                        ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "jhonjhon4842.ddns.net"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "IN A"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.at",
-                    "data_type": "numeric",
-                    "example_values": [
-                        4031
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.pid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        4012
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.procid",
-                    "data_type": "numeric",
-                    "example_values": [
-                        66
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "memory/4012-0-0x0000000000000000-mapping.dmp"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.report.tasks.behavioral2.*.kind",
-                    "data_type": "string",
-                    "example_values": [
-                        "3"
                     ]
                 },
                 {
@@ -1407,14 +1408,12 @@
                     "description": "The kind of URL analysis to run, you can choose between 'url' and 'fetch'. Url launches the url in the sandbox. Fetch lets Recorded Future Sandbox download what's located at the URL and submit it as a file",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
                     "default": "url",
                     "order": 1
                 },
                 "profile_id": {
                     "description": "The profile to use (standard if left empty)",
                     "data_type": "string",
-                    "required": false,
                     "order": 2
                 }
             },
@@ -1426,6 +1425,37 @@
                         "failed"
                     ],
                     "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.kind",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.profile_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "contains": [
+                        "file url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.analysis_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "200729-zpddstnc42"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.target",
+                    "data_type": "string",
+                    "example_values": [
+                        "fbaf785edfafa583ea61884d88f507a27154892a394e27d81102f79fe7eb5b8f",
+                        "https://example.com",
+                        "sample.exe"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary",
@@ -1443,12 +1473,50 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.target",
-                    "data_type": "string",
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
                     "example_values": [
-                        "fbaf785edfafa583ea61884d88f507a27154892a394e27d81102f79fe7eb5b8f",
-                        "https://google.com",
-                        "sample.exe"
+                        1
+                    ]
+                }
+            ],
+            "render": {
+                "type": "json"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get status",
+            "identifier": "get_status",
+            "description": "Get the current status of a Recorded Future Sandbox analysis",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "analysis_id": {
+                    "description": "ID given by Recorded Future Sandbox for the analysis to query",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "analysis id"
+                    ],
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ],
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.analysis_id",
+                    "data_type": "string",
+                    "contains": [
+                        "analysis id"
                     ]
                 },
                 {
@@ -1459,6 +1527,31 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "reported",
+                        "scheduled",
+                        "running",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric",
                     "example_values": [
@@ -1466,79 +1559,10 @@
                     ]
                 }
             ],
-            "versions": "EQ(*)"
-        },
-        {
-          "action": "get status",
-          "identifier": "get_status",
-          "description": "Get the current status of a Recorded Future Sandbox analysis",
-          "type": "investigate",
-          "read_only": true,
-          "parameters": {
-              "analysis_id": {
-                  "description": "ID given by Recorded Future Sandbox for the analysis to query.",
-                  "data_type": "string",
-                  "required": true,
-                  "primary": true,
-                  "contains": [
-                      "string"
-                  ],
-                  "order": 0
-              }
-          },
-          "output": [
-              {
-                  "data_path": "action_result.status",
-                  "example_values": [
-                      "success",
-                      "failed"
-                  ],
-                  "data_type": "string"
-              },
-              {
-                  "data_path": "action_result.summary",
-                  "data_type": "string"
-              },
-              {
-                  "data_path": "action_result.message",
-                  "data_type": "string"
-              },
-              {
-                  "data_path": "summary.total_objects",
-                  "data_type": "numeric",
-                  "example_values": [
-                      1
-                  ]
-              },
-              {
-                  "data_path": "action_result.data.*.analysis_id",
-                  "data_type": "string",
-                  "example_values": [
-                      "200729-zpddstnc42"
-                  ]
-              },
-              {
-                  "data_path": "action_result.data.*.status",
-                  "data_type": "string",
-                  "example_values": [
-                      "reported",
-                      "scheduled",
-                      "running",
-                      "failed"
-                  ]
-              },
-              {
-                "data_path": "summary.total_objects_successful",
-                "data_type": "numeric",
-                "example_values": [
-                    1
-                ]
-            }
-          ],
-          "render": {
-            "type": "json"
+            "render": {
+                "type": "json"
             },
-          "versions": "EQ(*)"
+            "versions": "EQ(*)"
         }
     ],
     "pip39_dependencies": {
