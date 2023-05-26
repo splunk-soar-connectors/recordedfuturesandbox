@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_api.py
 #
-# Copyright (c) 2022 Recorded Future, Inc.
+# Copyright (c) 2023 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -64,9 +64,21 @@ class TriageAPI:
             method, url, params=params, files=files, headers=self.headers,
             json=_json)
 
-        # Try parsing the response as JSON to see if we got a valid object
         try:
-            data = response.json()
+            response.raise_for_status()
+        except requests.RequestException as e:
+            raise TriageException(
+                "Recorded Future Sandbox returned an unexpected "
+                "HTTP status {:s}".format(str(e))
+            )
+        # Try parsing the response as JSON to see if we got a valid object.
+        # We remove null byte characters because these can cause issues when
+        # being inserted into PostgreSQL by Splunk.
+        # (can be part of DNS PTR responses, etc)
+        try:
+            data = json.loads(
+                response.content.replace(rb"\u0000", b"").replace(b"\x00", b"")
+            )
         except ValueError as e:
             raise TriageException(
                 "Recorded Future Sandbox returned a non JSON response "

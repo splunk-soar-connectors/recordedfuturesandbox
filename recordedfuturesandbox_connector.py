@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_connector.py
 #
-# Copyright (c) 2022 Recorded Future, Inc.
+# Copyright (c) 2023 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -23,7 +23,8 @@ import phantom.app as phantom
 import phantom.rules as prules
 from phantom.app import ActionResult, BaseConnector
 
-from recordedfuturesandbox_api import TriageAPI, TriageException
+from recordedfuturesandbox_api import TriageException
+from recordedfuturesandbox_api import TriageAPI
 
 
 class TriageConnector(BaseConnector):
@@ -127,7 +128,7 @@ class TriageConnector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_fetch_report(self, param):
+    def _poll_analysis(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         self.save_progress("Checking if Recorded Future Sandbox is up")
@@ -175,7 +176,6 @@ class TriageConnector(BaseConnector):
 
     def _handle_test_connectivity(self, p):
         action_result = self.add_action_result(ActionResult(dict(p)))
-        self.save_progress("Checking if Recorded Future Sandbox is up")
         if self._api.is_available():
             self.save_progress("Recorded Future Sandbox is up")
             action_result.set_status(phantom.APP_SUCCESS)
@@ -227,7 +227,7 @@ class TriageConnector(BaseConnector):
             "test_connectivity": self._handle_test_connectivity,
             "detonate_file": self._handle_detonate_file,
             "detonate_url": self._handle_detonate_url,
-            "fetch_report": self._handle_fetch_report,
+            "fetch_report": self._poll_analysis,
             "get_status": self._get_status,
         }
 
