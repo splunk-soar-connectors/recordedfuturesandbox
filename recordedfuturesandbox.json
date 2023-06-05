@@ -85,11 +85,11 @@
             "output": [
                 {
                     "data_path": "action_result.status",
+                    "data_type": "string",
                     "example_values": [
                         "success",
                         "failed"
-                    ],
-                    "data_type": "string"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.file_name",
@@ -179,11 +179,11 @@
             "output": [
                 {
                     "data_path": "action_result.status",
+                    "data_type": "string",
                     "example_values": [
                         "success",
                         "failed"
-                    ],
-                    "data_type": "string"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.analysis_id",
@@ -1420,11 +1420,11 @@
             "output": [
                 {
                     "data_path": "action_result.status",
+                    "data_type": "string",
                     "example_values": [
                         "success",
                         "failed"
-                    ],
-                    "data_type": "string"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.kind",
@@ -1506,11 +1506,11 @@
             "output": [
                 {
                     "data_path": "action_result.status",
+                    "data_type": "string",
                     "example_values": [
                         "success",
                         "failed"
-                    ],
-                    "data_type": "string"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.analysis_id",

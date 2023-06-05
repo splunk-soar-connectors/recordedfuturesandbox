@@ -51,7 +51,7 @@ class TriageConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
     def _error(self, mess):
-        self.save_progress("An error occurred: " + str(mess))
+        self.save_progress("An error occurred: {}".format(str(mess)))
 
     def _handle_detonate_file(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
