@@ -10,7 +10,7 @@
     "product_version_regex": ".*",
     "publisher": "Recorded Future",
     "license": "Copyright (c) 2022-2023 Recorded Future, Inc.",
-    "min_phantom_version": "5.5.0",
+    "min_phantom_version": "6.0.0",
     "product_vendor": "Recorded Future",
     "logo": "logo_recordedfuturesandbox.svg",
     "logo_dark": "logo_recordedfuturesandbox_dark.svg",
@@ -1578,10 +1578,6 @@
             {
                 "module": "idna",
                 "input_file": "wheels/py3/idna-3.4-py3-none-any.whl"
-            },
-            {
-                "module": "requests",
-                "input_file": "wheels/py3/requests-2.28.1-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
