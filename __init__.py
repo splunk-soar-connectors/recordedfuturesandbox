@@ -1,6 +1,6 @@
 # File: __init__.py
 #
-# Copyright (c) 2022 Recorded Future, Inc.
+# Copyright (c) 2022-2023 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are

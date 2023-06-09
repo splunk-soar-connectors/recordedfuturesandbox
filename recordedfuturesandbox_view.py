@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_view.py
 #
-# Copyright (c) 2022 Recorded Future, Inc.
+# Copyright (c) 2022-2023 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -18,6 +18,7 @@
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
+
 
 def _make_tags_dictlist(tags):
     tag_dicts = []
