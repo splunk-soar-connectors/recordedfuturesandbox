@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_connector.py
 #
-# Copyright (c) 2022 Recorded Future, Inc.
+# Copyright (c) 2022-2023 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -51,7 +51,7 @@ class TriageConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
     def _error(self, mess):
-        self.save_progress("An error occurred: " + str(mess))
+        self.save_progress("An error occurred: {}".format(str(mess)))
 
     def _handle_detonate_file(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
