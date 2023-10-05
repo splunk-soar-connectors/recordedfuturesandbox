@@ -2,7 +2,7 @@
 # Recorded Future Sandbox
 
 Publisher: Recorded Future  
-Connector Version: 1.1.0  
+Connector Version: 1.1.1  
 Product Vendor: Recorded Future  
 Product Name: Recorded Future Sandbox  
 Product Version Supported (regex): ".\*"  
@@ -87,7 +87,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
 **vault_id** |  required  | Vault ID of file to detonate | string |  `vault id`  `sha1` 
 **file_name** |  required  | Filename to use | string |  `file name` 
+**password** |  optional  | Optional password if file is protected. | string | 
 **profile_id** |  optional  | The profile to use (standard if left empty) | string | 
+**user_tags** |  optional  | Optional array of user-defined strings to mark sample, please separate pairs by commas (e.g. source:smtp,type:exe) | string | 
+**timeout** |  optional  | Optional, specify the timeout of analysis | numeric | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -298,6 +301,8 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **url** |  required  | URL to use | string |  `file url` 
 **kind** |  required  | The kind of URL analysis to run, you can choose between 'url' and 'fetch'. Url launches the url in the sandbox. Fetch lets Recorded Future Sandbox download what's located at the URL and submit it as a file | string | 
 **profile_id** |  optional  | The profile to use (standard if left empty) | string | 
+**user_tags** |  optional  | Optional array of user-defined strings to mark sample, please separate pairs by commas (e.g. source:smtp,type:exe) | string | 
+**timeout** |  optional  | Optional, specify the timeout of analysis | numeric | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
