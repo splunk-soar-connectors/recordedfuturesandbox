@@ -5,7 +5,7 @@
     "type": "sandbox",
     "package_name": "phantom_recordedfuturesandbox",
     "main_module": "recordedfuturesandbox_connector.py",
-    "app_version": "1.1.0",
+    "app_version": "1.1.1",
     "product_name": "Recorded Future Sandbox",
     "product_version_regex": ".*",
     "publisher": "Recorded Future",
@@ -75,11 +75,29 @@
                     ],
                     "order": 1
                 },
+                "password": {
+                    "description": "Optional password if file is protected.",
+                    "data_type": "string",
+                    "required": false,
+                    "order": 2
+                },
                 "profile_id": {
                     "description": "The profile to use (standard if left empty)",
                     "data_type": "string",
                     "required": false,
-                    "order": 2
+                    "order": 3
+                },
+                "user_tags": {
+                    "description": "Optional array of user-defined strings to mark sample, please separate pairs by commas (e.g. source:smtp,type:exe)",
+                    "data_type": "string",
+                    "required": false,
+                    "order": 4
+                },
+                "timeout": {
+                    "description": "Optional, specify the timeout of analysis",
+                    "data_type": "numeric",
+                    "required": false,
+                    "order": 5
                 }
             },
             "output": [
@@ -1404,6 +1422,18 @@
                     "data_type": "string",
                     "required": false,
                     "order": 2
+                },
+                "user_tags": {
+                    "description": "Optional array of user-defined strings to mark sample, please separate pairs by commas (e.g. source:smtp,type:exe)",
+                    "data_type": "string",
+                    "required": false,
+                    "order": 3
+                },
+                "timeout": {
+                    "description": "Optional, specify the timeout of analysis",
+                    "data_type": "numeric",
+                    "required": false,
+                    "order": 4
                 }
             },
             "output": [
