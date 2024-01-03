@@ -10,7 +10,7 @@
     "product_version_regex": ".*",
     "publisher": "Recorded Future",
     "license": "Copyright (c) 2022-2023 Recorded Future, Inc.",
-    "min_phantom_version": "6.0.0",
+    "min_phantom_version": "6.1.1",
     "product_vendor": "Recorded Future",
     "logo": "logo_recordedfuturesandbox.svg",
     "logo_dark": "logo_recordedfuturesandbox_dark.svg",
