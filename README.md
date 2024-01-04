@@ -6,7 +6,7 @@ Connector Version: 1.1.1
 Product Vendor: Recorded Future  
 Product Name: Recorded Future Sandbox  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.0.0  
+Minimum Product Version: 6.1.1  
 
 App for Recorded Future Sandbox submissions
 
