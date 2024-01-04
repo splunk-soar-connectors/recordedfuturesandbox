@@ -102,7 +102,7 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.summary",
+                    "data_path": "action_result.status",
                     "data_type": "string"
                 },
                 {
@@ -192,7 +192,7 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.summary",
+                    "data_path": "action_result.status",
                     "data_type": "string"
                 },
                 {
@@ -1552,7 +1552,7 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.summary",
+                    "data_path": "action_result.status",
                     "data_type": "string"
                 },
                 {
@@ -1624,6 +1624,28 @@
                       "scheduled",
                       "running",
                       "failed"
+                  ]
+              },
+              {
+                  "data_path": "action_result.status",
+                  "data_type": "string"
+              },
+              {
+                  "data_path": "action_result.message",
+                  "data_type": "string"
+              },
+              {
+                  "data_path": "summary.total_objects",
+                  "data_type": "numeric",
+                  "example_values": [
+                      1
+                  ]
+              },
+              {
+                  "data_path": "summary.total_objects_successful",
+                  "data_type": "numeric",
+                  "example_values": [
+                      1
                   ]
               }
           ],
