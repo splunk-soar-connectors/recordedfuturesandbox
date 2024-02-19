@@ -1,6 +1,6 @@
 [comment]: # " File: README.md"
 [comment]: # ""
-[comment]: # "Copyright (c) 2022-2023 Recorded Future, Inc."
+[comment]: # "Copyright (c) 2022-2024 Recorded Future, Inc."
 [comment]: # ""
 [comment]: # "This unpublished material is proprietary to Recorded Future. All"
 [comment]: # "rights reserved. The methods and techniques described herein are"

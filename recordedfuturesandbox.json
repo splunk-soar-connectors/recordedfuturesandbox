@@ -5,11 +5,11 @@
     "type": "sandbox",
     "package_name": "phantom_recordedfuturesandbox",
     "main_module": "recordedfuturesandbox_connector.py",
-    "app_version": "1.1.1",
+    "app_version": "1.2.0",
     "product_name": "Recorded Future Sandbox",
     "product_version_regex": ".*",
     "publisher": "Recorded Future",
-    "license": "Copyright (c) 2022-2023 Recorded Future, Inc.",
+    "license": "Copyright (c) 2022-2024 Recorded Future, Inc.",
     "min_phantom_version": "6.1.1",
     "product_vendor": "Recorded Future",
     "logo": "logo_recordedfuturesandbox.svg",
@@ -76,34 +76,34 @@
                     "order": 1
                 },
                 "password": {
-                    "description": "Optional password if file is protected.",
+                    "description": "Optional password if file is protected",
                     "data_type": "string",
-                    "required": false,
                     "order": 2
                 },
                 "profile_id": {
                     "description": "The profile to use (standard if left empty)",
                     "data_type": "string",
-                    "required": false,
                     "order": 3
                 },
                 "user_tags": {
                     "description": "Optional array of user-defined strings to mark sample, please separate pairs by commas (e.g. source:smtp,type:exe)",
                     "data_type": "string",
-                    "required": false,
                     "order": 4
                 },
                 "timeout": {
                     "description": "Optional, specify the timeout of analysis",
                     "data_type": "numeric",
-                    "required": false,
                     "order": 5
                 }
             },
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -176,7 +176,7 @@
             "read_only": true,
             "parameters": {
                 "analysis_id": {
-                    "description": "ID given by Recorded Future Sandbox for the analysis to query.",
+                    "description": "ID given by Recorded Future Sandbox for the analysis to query",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
@@ -193,7 +193,11 @@
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -294,15 +298,13 @@
                     "data_path": "action_result.data.*.report.summary.tasks.behavioral1.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "persistence",
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore"
-                        ]
+                        "persistence",
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore"
                     ]
                 },
                 {
@@ -365,15 +367,13 @@
                     "data_path": "action_result.data.*.report.summary.tasks.behavioral2.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore",
-                            "persistence"
-                        ]
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore",
+                        "persistence"
                     ]
                 },
                 {
@@ -436,9 +436,7 @@
                     "data_path": "action_result.data.*.report.summary.tasks.static1.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "family:nanocore"
-                        ]
+                        "family:nanocore"
                     ]
                 },
                 {
@@ -522,10 +520,8 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral1.sample.*.static_tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
+                        "windows",
+                        "x86"
                     ]
                 },
                 {
@@ -574,10 +570,8 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral1.task.*.static_tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
+                        "windows",
+                        "x86"
                     ]
                 },
                 {
@@ -591,36 +585,30 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "persistence",
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore"
-                        ]
+                        "persistence",
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.ttp",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "T1060",
-                            "T1112",
-                            "T1053",
-                            "T1082"
-                        ]
+                        "T1060",
+                        "T1112",
+                        "T1053",
+                        "T1082"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral1.analysis.*.features",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "analog"
-                        ]
+                        "analog"
                     ]
                 },
                 {
@@ -852,9 +840,7 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.*.protocols",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "dns"
-                        ]
+                        "dns"
                     ]
                 },
                 {
@@ -882,9 +868,7 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral1.network.*.dns_request.*.domains",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "jhonjhon4842.ddns.net"
-                        ]
+                        "jhonjhon4842.ddns.net"
                     ]
                 },
                 {
@@ -1010,10 +994,8 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral2.sample.*.static_tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
+                        "windows",
+                        "x86"
                     ]
                 },
                 {
@@ -1062,10 +1044,8 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral2.task.*.static_tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "windows",
-                            "x86"
-                        ]
+                        "windows",
+                        "x86"
                     ]
                 },
                 {
@@ -1079,36 +1059,30 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "evasion",
-                            "trojan",
-                            "keylogger",
-                            "stealer",
-                            "spyware",
-                            "family:nanocore",
-                            "persistence"
-                        ]
+                        "evasion",
+                        "trojan",
+                        "keylogger",
+                        "stealer",
+                        "spyware",
+                        "family:nanocore",
+                        "persistence"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.ttp",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "T1053",
-                            "T1082",
-                            "T1060",
-                            "T1112"
-                        ]
+                        "T1053",
+                        "T1082",
+                        "T1060",
+                        "T1112"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.report.tasks.behavioral2.analysis.*.features",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "analog"
-                        ]
+                        "analog"
                     ]
                 },
                 {
@@ -1333,9 +1307,7 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.*.protocols",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "dns"
-                        ]
+                        "dns"
                     ]
                 },
                 {
@@ -1363,9 +1335,7 @@
                     "data_path": "action_result.data.*.report.tasks.behavioral2.network.*.dns_request.*.domains",
                     "data_type": "string",
                     "example_values": [
-                        [
-                            "jhonjhon4842.ddns.net"
-                        ]
+                        "jhonjhon4842.ddns.net"
                     ]
                 },
                 {
@@ -1441,26 +1411,22 @@
                     "description": "The kind of URL analysis to run, you can choose between 'url' and 'fetch'. Url launches the url in the sandbox. Fetch lets Recorded Future Sandbox download what's located at the URL and submit it as a file",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
                     "default": "url",
                     "order": 1
                 },
                 "profile_id": {
                     "description": "The profile to use (standard if left empty)",
                     "data_type": "string",
-                    "required": false,
                     "order": 2
                 },
                 "user_tags": {
                     "description": "Optional array of user-defined strings to mark sample, please separate pairs by commas (e.g. source:smtp,type:exe)",
                     "data_type": "string",
-                    "required": false,
                     "order": 3
                 },
                 "timeout": {
                     "description": "Optional, specify the timeout of analysis",
                     "data_type": "numeric",
-                    "required": false,
                     "order": 4
                 }
             },
@@ -1553,7 +1519,11 @@
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -1591,65 +1561,69 @@
             "versions": "EQ(*)"
         },
         {
-          "action": "get status",
-          "identifier": "get_status",
-          "description": "Get the current status of a Recorded Future Sandbox analysis",
-          "type": "investigate",
-          "read_only": true,
-          "parameters": {
-              "analysis_id": {
-                  "description": "ID given by Recorded Future Sandbox for the analysis to query.",
-                  "data_type": "string",
-                  "required": true,
-                  "primary": true,
-                  "contains": [
-                      "string"
-                  ],
-                  "order": 0
-              }
-          },
-          "output": [
-              {
-                  "data_path": "action_result.data.*.analysis_id",
-                  "data_type": "string",
-                  "example_values": [
-                      "200729-zpddstnc42"
-                  ]
-              },
-              {
-                  "data_path": "action_result.data.*.status",
-                  "data_type": "string",
-                  "example_values": [
-                      "reported",
-                      "scheduled",
-                      "running",
-                      "failed"
-                  ]
-              },
-              {
-                  "data_path": "action_result.status",
-                  "data_type": "string"
-              },
-              {
-                  "data_path": "action_result.message",
-                  "data_type": "string"
-              },
-              {
-                  "data_path": "summary.total_objects",
-                  "data_type": "numeric",
-                  "example_values": [
-                      1
-                  ]
-              },
-              {
-                  "data_path": "summary.total_objects_successful",
-                  "data_type": "numeric",
-                  "example_values": [
-                      1
-                  ]
-              }
-          ],
-          "versions": "EQ(*)"
+            "action": "get status",
+            "identifier": "get_status",
+            "description": "Get the current status of a Recorded Future Sandbox analysis",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "analysis_id": {
+                    "description": "ID given by Recorded Future Sandbox for the analysis to query",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [
+                        "string"
+                    ],
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.data.*.analysis_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "200729-zpddstnc42"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "reported",
+                        "scheduled",
+                        "running",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "versions": "EQ(*)"
         }
     ]
 }
