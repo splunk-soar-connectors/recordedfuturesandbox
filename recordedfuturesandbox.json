@@ -143,6 +143,24 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.parameter.password",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.user_tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "source:smtp,type:exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.timeout",
+                    "data_type": "string",
+                    "contains": [
+                        30
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "example_values": [
@@ -1455,6 +1473,20 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.parameter.user_tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "source:smtp,type:exe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.timeout",
+                    "data_type": "string",
+                    "contains": [
+                        30
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "example_values": [
@@ -1556,35 +1588,6 @@
                     "example_values": [
                         "200729-zpddstnc42"
                     ]
-                }
-            ],
-            "versions": "EQ(*)"
-        },
-        {
-            "action": "get status",
-            "identifier": "get_status",
-            "description": "Get the current status of a Recorded Future Sandbox analysis",
-            "type": "investigate",
-            "read_only": true,
-            "parameters": {
-                "analysis_id": {
-                    "description": "ID given by Recorded Future Sandbox for the analysis to query",
-                    "data_type": "string",
-                    "required": true,
-                    "primary": true,
-                    "contains": [
-                        "string"
-                    ],
-                    "order": 0
-                }
-            },
-            "output": [
-                {
-                    "data_path": "action_result.data.*.analysis_id",
-                    "data_type": "string",
-                    "example_values": [
-                        "200729-zpddstnc42"
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.status",
@@ -1594,32 +1597,6 @@
                         "scheduled",
                         "running",
                         "failed"
-                    ]
-                },
-                {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
                     ]
                 }
             ],
