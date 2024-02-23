@@ -156,7 +156,7 @@
                 {
                     "data_path": "action_result.parameter.timeout",
                     "data_type": "string",
-                    "contains": [
+                    "example_values": [
                         30
                     ]
                 },
@@ -1482,7 +1482,7 @@
                 {
                     "data_path": "action_result.parameter.timeout",
                     "data_type": "string",
-                    "contains": [
+                    "example_values": [
                         30
                     ]
                 },
