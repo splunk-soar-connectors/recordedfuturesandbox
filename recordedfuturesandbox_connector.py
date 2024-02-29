@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_connector.py
 #
-# Copyright (c) 2022-2023 Recorded Future, Inc.
+# Copyright (c) 2022-2024 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -27,7 +27,6 @@ from recordedfuturesandbox_api import TriageAPI, TriageException
 
 
 class TriageConnector(BaseConnector):
-
     def __init__(self):
         BaseConnector.__init__(self)
 
@@ -43,9 +42,11 @@ class TriageConnector(BaseConnector):
 
         app_json = self.get_app_json()
         self._api = TriageAPI(
-            self._api_key, self._host, self._api_path,
+            self._api_key,
+            self._host,
+            self._api_path,
             user_agent=f"Splunk SOAR/{self.get_product_version()} (Phantom) "
-                       f"{app_json['package_name']}/{app_json['app_version']}"
+            f"{app_json['package_name']}/{app_json['app_version']}",
         )
 
         return phantom.APP_SUCCESS
@@ -61,24 +62,45 @@ class TriageConnector(BaseConnector):
             self.save_progress("Recorded Future Sandbox is down")
             return phantom.APP_ERROR
 
-        vault_id = param.get('vault_id')
-        file_name = param.get('file_name')
-        profile = param.get('profile_id')
+        vault_id = param.get("vault_id")
+        file_name = param.get("file_name")
+        profile = param.get("profile_id")
+        password = param.get("password")
+        tags = param.get("user_tags")
+        timeout = param.get("timeout")
+
+        try:
+            # retrieve container id for submission user_tag
+            container = self.get_container_info(container_id=None)
+            if not container:
+                return action_result.set_status(
+                    phantom.APP_ERROR, "Unable to obtain container details"
+                )
+            container_id = str(container[1]["id"])
+        except Exception as e:
+            self._error(e)
+            return action_result.set_status(
+                phantom.APP_ERROR, "Error obtaining container id", str(e)
+            )
+
+        # create user_tags array
+        user_tags = [f"id:{container_id}", "source:splunksoar"]
+        if tags:
+            user_tags.extend([t.strip() for t in tags.split(",")])
+            self.debug_print(user_tags)
 
         success, _, vault_info = prules.vault_info(vault_id=vault_id)
         if not success:
             self._error("Unable to find vault info")
-            return action_result.set_status(
-                phantom.APP_ERROR, "Invalid Vault ID"
-            )
+            return action_result.set_status(phantom.APP_ERROR, "Invalid Vault ID")
 
         file_info = vault_info[0]
-        file_path = file_info['path']
+        file_path = file_info["path"]
         if not file_name:
-            file_name = file_info['name']
+            file_name = file_info["name"]
 
         try:
-            payload = open(file_path, 'rb')
+            payload = open(file_path, "rb")
         except Exception as e:
             self._error(e)
             return action_result.set_status(
@@ -86,16 +108,16 @@ class TriageConnector(BaseConnector):
             )
 
         try:
-            analysis_id = self._api.analyze(payload, file_name, profile)
+            analysis_id = self._api.analyze(
+                payload, file_name, user_tags, timeout, profile, password
+            )
         except TriageException as e:
             self._error(e)
-            return action_result.set_status(
-                phantom.APP_ERROR, str(e)
-            )
+            return action_result.set_status(phantom.APP_ERROR, str(e))
 
         self.save_progress("File submitted.")
-        action_result.add_data({'target': file_name})
-        action_result.add_data({'analysis_id': analysis_id})
+        action_result.add_data({"target": file_name})
+        action_result.add_data({"analysis_id": analysis_id})
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -109,21 +131,41 @@ class TriageConnector(BaseConnector):
 
         url = param.get("url")
         kind = param.get("kind")
-        profile = param.get('profile_id')
+        profile = param.get("profile_id")
+        tags = param.get("user_tags")
+        timeout = param.get("timeout")
+
+        try:
+            # retrieve container id for submission user_tag
+            container = self.get_container_info(container_id=None)
+            if not container:
+                return action_result.set_status(
+                    phantom.APP_ERROR, "Unable to obtain container details"
+                )
+            container_id = str(container[1]["id"])
+        except Exception as e:
+            self._error(e)
+            return action_result.set_status(
+                phantom.APP_ERROR, "Error obtaining container id", str(e)
+            )
+
+        # create user_tags array
+        user_tags = [f"id:{container_id}", "source:splunksoar"]
+        if tags:
+            user_tags.extend([t.strip() for t in tags.split(",")])
+            self.debug_print(user_tags)
 
         self.save_progress("Sending an analysis for {:s}".format(url))
 
         try:
-            analysis_id = self._api.analyze_url(url, kind, profile)
+            analysis_id = self._api.analyze_url(url, kind, user_tags, timeout, profile)
         except TriageException as e:
             self._error(e)
-            return action_result.set_status(
-                phantom.APP_ERROR, str(e)
-            )
+            return action_result.set_status(phantom.APP_ERROR, str(e))
 
         self.save_progress("URL submitted.")
-        action_result.add_data({'target': url})
-        action_result.add_data({'analysis_id': analysis_id})
+        action_result.add_data({"target": url})
+        action_result.add_data({"analysis_id": analysis_id})
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -135,18 +177,17 @@ class TriageConnector(BaseConnector):
             self.save_progress("Recorded Future Sandbox is down")
             return phantom.APP_ERROR
 
-        analysis_id = param.get('analysis_id')
+        analysis_id = param.get("analysis_id")
 
-        self.save_progress(
-            "Checking status of analysis {:s}".format(analysis_id)
-        )
+        self.save_progress("Checking status of analysis {:s}".format(analysis_id))
 
         try:
             curr_status = self._api.check(analysis_id)
         except TriageException as e:
             self.save_progress(
-                "An error occurred when checking the status of {:s}: {:s}"
-                .format(analysis_id, str(e))
+                "An error occurred when checking the status of {:s}: {:s}".format(
+                    analysis_id, str(e)
+                )
             )
             return action_result.set_status(phantom.APP_ERROR, e)
 
@@ -154,7 +195,7 @@ class TriageConnector(BaseConnector):
             self.save_progress("Analysis not finished")
             return action_result.set_status(
                 phantom.APP_ERROR,
-                "Report not ready. Analysis is {:s}".format(curr_status)
+                "Report not ready. Analysis is {:s}".format(curr_status),
             )
 
         try:
@@ -162,20 +203,18 @@ class TriageConnector(BaseConnector):
             report = self._api.full_report(analysis_id)
         except TriageException as e:
             self.save_progress(
-                "An error occurred when fetching the report {:s}".format(
-                    str(e)
-                )
+                "An error occurred when fetching the report {:s}".format(str(e))
             )
             return action_result.set_status(phantom.APP_ERROR, e)
 
         self.save_progress("Everything succeeded! Sending report back!")
-        action_result.add_data({'report': report})
+        action_result.add_data({"report": report})
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_test_connectivity(self, p):
         action_result = self.add_action_result(ActionResult(dict(p)))
-        self.save_progress("Checking if Recorded Future Sandbox is up")
+        self.save_progress("Checking Recorded Future Sandbox status")
         if self._api.is_available():
             self.save_progress("Recorded Future Sandbox is up")
             action_result.set_status(phantom.APP_SUCCESS)
@@ -193,29 +232,29 @@ class TriageConnector(BaseConnector):
             self.save_progress("Recorded Future Sandbox is down")
             return phantom.APP_ERROR
 
-        analysis_id = param.get('analysis_id')
+        analysis_id = param.get("analysis_id")
 
-        self.save_progress(
-            "Checking status of analysis {:s}".format(analysis_id)
-        )
+        self.save_progress("Checking status of analysis {:s}".format(analysis_id))
 
         try:
             curr_status = self._api.check(analysis_id)
         except TriageException as e:
             self.save_progress(
-                "An error occurred when checking the status of {:s}: {:s}"
-                .format(analysis_id, str(e))
+                "An error occurred when checking the status of {:s}: {:s}".format(
+                    analysis_id, str(e)
+                )
             )
             return action_result.set_status(phantom.APP_ERROR, str(e))
 
         self.save_progress(
-            "Successfully got status of {:s}. Returning result."
-            .format(analysis_id)
+            "Successfully got status of {:s}. Returning result.".format(analysis_id)
         )
-        action_result.add_data({
-            'analysis_id': analysis_id,
-            'status': curr_status,
-        })
+        action_result.add_data(
+            {
+                "analysis_id": analysis_id,
+                "status": curr_status,
+            }
+        )
 
         return action_result.set_status(phantom.APP_SUCCESS)
 

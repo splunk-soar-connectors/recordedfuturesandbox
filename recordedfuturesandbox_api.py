@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_api.py
 #
-# Copyright (c) 2022-2023 Recorded Future, Inc.
+# Copyright (c) 2022-2024 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -25,9 +25,9 @@ import requests
 
 
 class TriageAPI:
-
-    def __init__(self, api_key, url=None, api_path=None, verify_ssl=True,
-                 user_agent=None):
+    def __init__(
+        self, api_key, url=None, api_path=None, verify_ssl=True, user_agent=None
+    ):
         """
         :type   api_key:    str
         :param  api_key:    The API key which can be found on the /account page
@@ -51,18 +51,18 @@ class TriageAPI:
 
         self.api_url = self.base_url + (api_path or "/v0").rstrip("/")
 
-        self.headers = {'Authorization': 'Bearer {:s}'.format(api_key)}
+        self.headers = {"Authorization": "Bearer {:s}".format(api_key)}
         if user_agent:
             self.headers["User-Agent"] = user_agent
 
         self.verify_ssl = verify_ssl
 
-    def request(self, uri, method='GET', params=None, files=None, _json=None):
+    def request(self, uri, method="GET", params=None, files=None, _json=None):
         url = "{:s}{:s}".format(self.api_url, uri)
 
         response = requests.request(
-            method, url, params=params, files=files, headers=self.headers,
-            json=_json)
+            method, url, params=params, files=files, headers=self.headers, json=_json
+        )
 
         try:
             response.raise_for_status()
@@ -90,13 +90,16 @@ class TriageAPI:
         if "error" in data.keys():
             raise TriageException(
                 "Recorded Future Sandbox raised an error: {:s} - {:s}".format(
-                    data["error"], data["message"])
+                    data["error"], data["message"]
+                )
             )
 
         # Everything is good to go
         return data
 
-    def analyze(self, handle, filename, profile=None):
+    def analyze(
+        self, handle, filename, user_tags, timeout=None, profile=None, password=None
+    ):
         """Submit a file for analysis.
 
         :type  handle:   File handle
@@ -105,6 +108,9 @@ class TriageAPI:
         :param filename: File name.
         :type  profile   str
         :param profile   Profile ID
+        :param password  If password protected file.
+        :param user_tags Arrary of strings to mark sample.
+        :param timeout   Timeout of the analysis.
 
         :rtype:  str
         :return: File ID as a string
@@ -114,12 +120,17 @@ class TriageAPI:
         data = {
             "kind": "file",
             "interactive": False,
+            "user_tags": user_tags,
         }
 
+        if timeout:
+            data["defaults"] = {"timeout": timeout}
+
         if profile:
-            data["profiles"] = [{
-                "profile": profile
-            }]
+            data["profiles"] = [{"profile": profile}]
+
+        if password:
+            data.update({"password": password})
 
         params = {"_json": json.dumps(data)}
 
@@ -127,15 +138,14 @@ class TriageAPI:
         handle.seek(0)
 
         # Make the request to Triage
-        data = self.request("/samples", method='POST', files=files,
-                            params=params)
+        data = self.request("/samples", method="POST", files=files, params=params)
 
         if "id" in data.keys():
             return data["id"]
         else:
             raise TriageException("Recorded Future Sandbox returned no ID")
 
-    def analyze_url(self, url, kind="url", profile=None):
+    def analyze_url(self, url, kind="url", user_tags=None, timeout=None, profile=None):
         """Submit a file for analysis.
 
         :type  url:      str
@@ -152,13 +162,17 @@ class TriageAPI:
             "url": url,
             "kind": kind,
             "interactive": False,
+            "user_tags": user_tags,
         }
+
+        if timeout:
+            params["defaults"] = {"timeout": timeout}
 
         if profile:
             params["profiles"] = [profile]
 
         # Make the request to Triage
-        data = self.request("/samples", method='POST', _json=params)
+        data = self.request("/samples", method="POST", _json=params)
 
         if "id" in data.keys():
             return data["id"]
@@ -180,9 +194,7 @@ class TriageAPI:
         if "status" in data.keys():
             return data["status"]
         else:
-            raise TriageException(
-                "Recorded Future Sandbox didn't return a status"
-            )
+            raise TriageException("Recorded Future Sandbox didn't return a status")
 
     def is_available(self):
         """Determine if the Triage server is alive.
@@ -213,8 +225,7 @@ class TriageAPI:
 
         if report_format != "json":
             raise TriageException(
-                "Recorded Future Sandbox api only supports the json report "
-                "format"
+                "Recorded Future Sandbox api only supports the json report " "format"
             )
 
         data = self.request("/samples/{:s}/summary".format(item_id))
@@ -259,10 +270,7 @@ class TriageAPI:
         :return: Dictionary representing the JSON parsed data.
         """
         report = self.report(item_id)
-        full_report = {
-            'summary': report,
-            'tasks': {}
-        }
+        full_report = {"summary": report, "tasks": {}}
 
         # Loop over all the tasks in the summary
         for task_id in report["tasks"]:
@@ -272,8 +280,8 @@ class TriageAPI:
             try:
                 # Try to retrieve each full report
                 triage_report = self.request(
-                    "/samples/{:s}/{:s}/report_triage.json".format(
-                        item_id, task_name))
+                    "/samples/{:s}/{:s}/report_triage.json".format(item_id, task_name)
+                )
                 full_report["tasks"][task_name] = triage_report
             except TriageException:
                 continue
