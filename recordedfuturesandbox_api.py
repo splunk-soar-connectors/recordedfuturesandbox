@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_api.py
 #
-# Copyright (c) 2022-2024 Recorded Future, Inc.
+# Copyright (c) 2022-2025 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -25,9 +25,7 @@ import requests
 
 
 class TriageAPI:
-    def __init__(
-        self, api_key, url=None, api_path=None, verify_ssl=True, user_agent=None
-    ):
+    def __init__(self, api_key, url=None, api_path=None, verify_ssl=True, user_agent=None):
         """
         :type   api_key:    str
         :param  api_key:    The API key which can be found on the /account page
@@ -47,59 +45,43 @@ class TriageAPI:
         self.base_url = url or "https://api.tria.ge"
 
         if not self.base_url.startswith("http"):
-            self.base_url = "https://{:s}".format(self.base_url)
+            self.base_url = f"https://{self.base_url:s}"
 
         self.api_url = self.base_url + (api_path or "/v0").rstrip("/")
 
-        self.headers = {"Authorization": "Bearer {:s}".format(api_key)}
+        self.headers = {"Authorization": f"Bearer {api_key:s}"}
         if user_agent:
             self.headers["User-Agent"] = user_agent
 
         self.verify_ssl = verify_ssl
 
     def request(self, uri, method="GET", params=None, files=None, _json=None):
-        url = "{:s}{:s}".format(self.api_url, uri)
+        url = f"{self.api_url:s}{uri:s}"
 
-        response = requests.request(
-            method, url, params=params, files=files, headers=self.headers, json=_json
-        )
+        response = requests.request(method, url, params=params, files=files, headers=self.headers, json=_json)
 
         try:
             response.raise_for_status()
         except requests.RequestException as e:
-            raise TriageException(
-                "Recorded Future Sandbox returned an unexpected "
-                "HTTP status {:s}".format(str(e))
-            )
+            raise TriageException(f"Recorded Future Sandbox returned an unexpected HTTP status {e!s:s}")
         # Try parsing the response as JSON to see if we got a valid object.
         # We remove null byte characters because these can cause issues when
         # being inserted into PostgreSQL by Splunk.
         # (can be part of DNS PTR responses, etc)
         try:
-            data = json.loads(
-                response.content.replace(rb"\u0000", b"").replace(b"\x00", b"")
-            )
+            data = json.loads(response.content.replace(rb"\u0000", b"").replace(b"\x00", b""))
         except ValueError as e:
-            raise TriageException(
-                "Recorded Future Sandbox returned a non JSON response "
-                "{:s}".format(str(e))
-            )
+            raise TriageException(f"Recorded Future Sandbox returned a non JSON response {e!s:s}")
 
         # If we got a normal object check whether we didn't receive an error
         # object
         if "error" in data.keys():
-            raise TriageException(
-                "Recorded Future Sandbox raised an error: {:s} - {:s}".format(
-                    data["error"], data["message"]
-                )
-            )
+            raise TriageException("Recorded Future Sandbox raised an error: {:s} - {:s}".format(data["error"], data["message"]))
 
         # Everything is good to go
         return data
 
-    def analyze(
-        self, handle, filename, user_tags, timeout=None, profile=None, password=None
-    ):
+    def analyze(self, handle, filename, user_tags, timeout=None, profile=None, password=None):
         """Submit a file for analysis.
 
         :type  handle:   File handle
@@ -189,7 +171,7 @@ class TriageAPI:
         :return: String value containing current analysis status.
         """
 
-        data = self.request("/samples/{:s}/summary".format(item_id))
+        data = self.request(f"/samples/{item_id:s}/summary")
 
         if "status" in data.keys():
             return data["status"]
@@ -224,16 +206,14 @@ class TriageAPI:
         """
 
         if report_format != "json":
-            raise TriageException(
-                "Recorded Future Sandbox api only supports the json report " "format"
-            )
+            raise TriageException("Recorded Future Sandbox api only supports the json report format")
 
-        data = self.request("/samples/{:s}/summary".format(item_id))
+        data = self.request(f"/samples/{item_id:s}/summary")
         tasks = data["tasks"]
         new_tasks = {}
 
         for key, value in tasks.items():
-            new_key = key.replace("{:s}-".format(item_id), "")
+            new_key = key.replace(f"{item_id:s}-", "")
             new_tasks[new_key] = value
 
         data["tasks"] = new_tasks
@@ -275,13 +255,11 @@ class TriageAPI:
         # Loop over all the tasks in the summary
         for task_id in report["tasks"]:
             # Remove the sample ID to get the task names
-            task_name = task_id.replace("{:s}-".format(item_id), "")
+            task_name = task_id.replace(f"{item_id:s}-", "")
 
             try:
                 # Try to retrieve each full report
-                triage_report = self.request(
-                    "/samples/{:s}/{:s}/report_triage.json".format(item_id, task_name)
-                )
+                triage_report = self.request(f"/samples/{item_id:s}/{task_name:s}/report_triage.json")
                 full_report["tasks"][task_name] = triage_report
             except TriageException:
                 continue

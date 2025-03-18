@@ -9,7 +9,7 @@
     "product_name": "Recorded Future Sandbox",
     "product_version_regex": ".*",
     "publisher": "Recorded Future",
-    "license": "Copyright (c) 2022-2024 Recorded Future, Inc.",
+    "license": "Copyright (c) 2022-2025 Recorded Future, Inc.",
     "min_phantom_version": "6.1.1",
     "product_vendor": "Recorded Future",
     "logo": "logo_recordedfuturesandbox.svg",
@@ -240,6 +240,9 @@
                     "data_type": "string",
                     "example_values": [
                         "200729-zpddstnc42"
+                    ],
+                    "contains": [
+                        "string"
                     ]
                 },
                 {
