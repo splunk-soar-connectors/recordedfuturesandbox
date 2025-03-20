@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_view.py
 #
-# Copyright (c) 2022-2024 Recorded Future, Inc.
+# Copyright (c) 2022-2025 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -25,7 +25,7 @@ def _make_tags_dictlist(tags):
     for t in tags:
         family = False
         if t.startswith("family:"):
-            t = t[len("family:"):]
+            t = t[len("family:") :]
             family = True
 
         tag_dicts.append({"name": t, "family": family})
@@ -66,7 +66,6 @@ def _make_report_contexts(result):
 
 
 def do_view(provides, all_app_runs, context):
-
     context["results"] = results = []
     for summary, action_results in all_app_runs:
         for result in action_results:

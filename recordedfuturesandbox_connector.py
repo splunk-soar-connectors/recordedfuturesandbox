@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_connector.py
 #
-# Copyright (c) 2022-2024 Recorded Future, Inc.
+# Copyright (c) 2022-2025 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -45,14 +45,13 @@ class TriageConnector(BaseConnector):
             self._api_key,
             self._host,
             self._api_path,
-            user_agent=f"Splunk SOAR/{self.get_product_version()} (Phantom) "
-            f"{app_json['package_name']}/{app_json['app_version']}",
+            user_agent=f"Splunk SOAR/{self.get_product_version()} (Phantom) {app_json['package_name']}/{app_json['app_version']}",
         )
 
         return phantom.APP_SUCCESS
 
     def _error(self, mess):
-        self.save_progress("An error occurred: {}".format(str(mess)))
+        self.save_progress(f"An error occurred: {mess!s}")
 
     def _handle_detonate_file(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
@@ -73,15 +72,11 @@ class TriageConnector(BaseConnector):
             # retrieve container id for submission user_tag
             container = self.get_container_info(container_id=None)
             if not container:
-                return action_result.set_status(
-                    phantom.APP_ERROR, "Unable to obtain container details"
-                )
+                return action_result.set_status(phantom.APP_ERROR, "Unable to obtain container details")
             container_id = str(container[1]["id"])
         except Exception as e:
             self._error(e)
-            return action_result.set_status(
-                phantom.APP_ERROR, "Error obtaining container id", str(e)
-            )
+            return action_result.set_status(phantom.APP_ERROR, "Error obtaining container id", str(e))
 
         # create user_tags array
         user_tags = [f"id:{container_id}", "source:splunksoar"]
@@ -103,14 +98,10 @@ class TriageConnector(BaseConnector):
             payload = open(file_path, "rb")
         except Exception as e:
             self._error(e)
-            return action_result.set_status(
-                phantom.APP_ERROR, "Error opening file", str(e)
-            )
+            return action_result.set_status(phantom.APP_ERROR, "Error opening file", str(e))
 
         try:
-            analysis_id = self._api.analyze(
-                payload, file_name, user_tags, timeout, profile, password
-            )
+            analysis_id = self._api.analyze(payload, file_name, user_tags, timeout, profile, password)
         except TriageException as e:
             self._error(e)
             return action_result.set_status(phantom.APP_ERROR, str(e))
@@ -139,15 +130,11 @@ class TriageConnector(BaseConnector):
             # retrieve container id for submission user_tag
             container = self.get_container_info(container_id=None)
             if not container:
-                return action_result.set_status(
-                    phantom.APP_ERROR, "Unable to obtain container details"
-                )
+                return action_result.set_status(phantom.APP_ERROR, "Unable to obtain container details")
             container_id = str(container[1]["id"])
         except Exception as e:
             self._error(e)
-            return action_result.set_status(
-                phantom.APP_ERROR, "Error obtaining container id", str(e)
-            )
+            return action_result.set_status(phantom.APP_ERROR, "Error obtaining container id", str(e))
 
         # create user_tags array
         user_tags = [f"id:{container_id}", "source:splunksoar"]
@@ -155,7 +142,7 @@ class TriageConnector(BaseConnector):
             user_tags.extend([t.strip() for t in tags.split(",")])
             self.debug_print(user_tags)
 
-        self.save_progress("Sending an analysis for {:s}".format(url))
+        self.save_progress(f"Sending an analysis for {url:s}")
 
         try:
             analysis_id = self._api.analyze_url(url, kind, user_tags, timeout, profile)
@@ -179,32 +166,26 @@ class TriageConnector(BaseConnector):
 
         analysis_id = param.get("analysis_id")
 
-        self.save_progress("Checking status of analysis {:s}".format(analysis_id))
+        self.save_progress(f"Checking status of analysis {analysis_id:s}")
 
         try:
             curr_status = self._api.check(analysis_id)
         except TriageException as e:
-            self.save_progress(
-                "An error occurred when checking the status of {:s}: {:s}".format(
-                    analysis_id, str(e)
-                )
-            )
+            self.save_progress(f"An error occurred when checking the status of {analysis_id:s}: {e!s:s}")
             return action_result.set_status(phantom.APP_ERROR, e)
 
         if curr_status != "reported":
             self.save_progress("Analysis not finished")
             return action_result.set_status(
                 phantom.APP_ERROR,
-                "Report not ready. Analysis is {:s}".format(curr_status),
+                f"Report not ready. Analysis is {curr_status:s}",
             )
 
         try:
             self.save_progress("Fetching analysis report")
             report = self._api.full_report(analysis_id)
         except TriageException as e:
-            self.save_progress(
-                "An error occurred when fetching the report {:s}".format(str(e))
-            )
+            self.save_progress(f"An error occurred when fetching the report {e!s:s}")
             return action_result.set_status(phantom.APP_ERROR, e)
 
         self.save_progress("Everything succeeded! Sending report back!")
@@ -234,21 +215,15 @@ class TriageConnector(BaseConnector):
 
         analysis_id = param.get("analysis_id")
 
-        self.save_progress("Checking status of analysis {:s}".format(analysis_id))
+        self.save_progress(f"Checking status of analysis {analysis_id:s}")
 
         try:
             curr_status = self._api.check(analysis_id)
         except TriageException as e:
-            self.save_progress(
-                "An error occurred when checking the status of {:s}: {:s}".format(
-                    analysis_id, str(e)
-                )
-            )
+            self.save_progress(f"An error occurred when checking the status of {analysis_id:s}: {e!s:s}")
             return action_result.set_status(phantom.APP_ERROR, str(e))
 
-        self.save_progress(
-            "Successfully got status of {:s}. Returning result.".format(analysis_id)
-        )
+        self.save_progress(f"Successfully got status of {analysis_id:s}. Returning result.")
         action_result.add_data(
             {
                 "analysis_id": analysis_id,
