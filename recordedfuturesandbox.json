@@ -14,7 +14,7 @@
     "product_vendor": "Recorded Future",
     "logo": "logo_recordedfuturesandbox.svg",
     "logo_dark": "logo_recordedfuturesandbox_dark.svg",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "fips_compliant": false,
     "configuration": {
         "server": {
