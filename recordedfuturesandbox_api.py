@@ -1,6 +1,6 @@
 # File: recordedfuturesandbox_api.py
 #
-# Copyright (c) 2022-2025 Recorded Future, Inc.
+# Copyright (c) 2022-2026 Recorded Future, Inc.
 #
 # This unpublished material is proprietary to Recorded Future. All
 # rights reserved. The methods and techniques described herein are
@@ -20,6 +20,7 @@
 # and limitations under the License.
 
 import json
+from urllib.parse import quote
 
 import requests
 
@@ -171,7 +172,8 @@ class TriageAPI:
         :return: String value containing current analysis status.
         """
 
-        data = self.request(f"/samples/{item_id:s}/summary")
+        encoded_item_id = quote(str(item_id), safe="")
+        data = self.request(f"/samples/{encoded_item_id}/summary")
 
         if "status" in data.keys():
             return data["status"]
@@ -208,7 +210,8 @@ class TriageAPI:
         if report_format != "json":
             raise TriageException("Recorded Future Sandbox api only supports the json report format")
 
-        data = self.request(f"/samples/{item_id:s}/summary")
+        encoded_item_id = quote(str(item_id), safe="")
+        data = self.request(f"/samples/{encoded_item_id}/summary")
         tasks = data["tasks"]
         new_tasks = {}
 
@@ -256,10 +259,12 @@ class TriageAPI:
         for task_id in report["tasks"]:
             # Remove the sample ID to get the task names
             task_name = task_id.replace(f"{item_id:s}-", "")
+            encoded_item_id = quote(str(item_id), safe="")
+            encoded_task_name = quote(str(task_name), safe="")
 
             try:
                 # Try to retrieve each full report
-                triage_report = self.request(f"/samples/{item_id:s}/{task_name:s}/report_triage.json")
+                triage_report = self.request(f"/samples/{encoded_item_id}/{encoded_task_name}/report_triage.json")
                 full_report["tasks"][task_name] = triage_report
             except TriageException:
                 continue
