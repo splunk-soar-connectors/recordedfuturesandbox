@@ -1,9 +1,9 @@
 # Recorded Future Sandbox
 
-Publisher: Recorded Future \
-Connector Version: 1.2.0 \
-Product Vendor: Recorded Future \
-Product Name: Recorded Future Sandbox \
+Publisher: Recorded Future <br>
+Connector Version: 1.2.0 <br>
+Product Vendor: Recorded Future <br>
+Product Name: Recorded Future Sandbox <br>
 Minimum Product Version: 6.1.1
 
 App for Recorded Future Sandbox submissions
@@ -36,17 +36,17 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[detonate file](#action-detonate-file) - Run the file in the sandbox and retrieve the analysis results \
-[fetch report](#action-fetch-report) - Fetch a Recorded Future Sandbox analysis report based on ID value \
-[detonate url](#action-detonate-url) - Run a url in the sandbox and retrieve the analysis results \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[detonate file](#action-detonate-file) - Run the file in the sandbox and retrieve the analysis results <br>
+[fetch report](#action-fetch-report) - Fetch a Recorded Future Sandbox analysis report based on ID value <br>
+[detonate url](#action-detonate-url) - Run a url in the sandbox and retrieve the analysis results <br>
 [get status](#action-get-status) - Get the current status of a Recorded Future Sandbox analysis
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -61,7 +61,7 @@ No Output
 
 Run the file in the sandbox and retrieve the analysis results
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -97,7 +97,7 @@ action_result.data.\*.analysis_id | string | | 200729-zpddstnc42 |
 
 Fetch a Recorded Future Sandbox analysis report based on ID value
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -281,7 +281,7 @@ action_result.data.\*.report.tasks.behavioral2.\*.kind | string | | 3 |
 
 Run a url in the sandbox and retrieve the analysis results
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -315,7 +315,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Get the current status of a Recorded Future Sandbox analysis
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -340,7 +340,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
