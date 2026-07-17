@@ -1,7 +1,7 @@
 # Recorded Future Sandbox
 
 Publisher: Recorded Future <br>
-Connector Version: 1.2.0 <br>
+Connector Version: 1.2.1 <br>
 Product Vendor: Recorded Future <br>
 Product Name: Recorded Future Sandbox <br>
 Minimum Product Version: 6.1.1
